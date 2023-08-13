@@ -1,0 +1,11 @@
+-- wikimedia
+DROP DATABASE IF EXISTS wikimedia;
+DROP USER IF EXISTS `wikimediaadmin`@`%`;
+DROP USER IF EXISTS `wikimediauser`@`%`;
+CREATE DATABASE IF NOT EXISTS wikimedia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS `wikimediaadmin`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW,
+CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `wikimedia`.* TO `wikimediaadmin`@`%`;
+CREATE USER IF NOT EXISTS `wikimediauser`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `wikimedia`.* TO `wikimediauser`@`%`;
+FLUSH PRIVILEGES;
